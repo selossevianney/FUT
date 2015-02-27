@@ -1,0 +1,99 @@
+{# app/Resources/views/layout.html.twig #}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width:device-width, initial-scale=1" />
+
+		<title> {% block title %} FUT AR Manager {% endblock %}</title>
+
+		{% block stylesheets %}
+			<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		{% endblock %}
+	</head>
+
+	<body>
+		<div class="jumbotron">
+			<div class="container-fluid">
+				<h1>Achat Revente Manager - {% block currentPage %}{% endblock %}</h1>
+
+				<nav class="navbar navbar-inverse">
+					<div class="container-fluid">
+						<a class="navbar-brand" href="#">FUT 15 -</a>
+						<ul class="nav navbar-nav" id="navbar" >
+							{% block navbar %}
+							<li id="list" {% if app.request.attributes.get('_route')== 'futar_manager_home' %}class="active"{% endif %}>
+								<a href="{{ path('futar_manager_home') }}">
+									Joueurs listés
+								</a>
+							</li>
+							<li id="sold" {% if app.request.attributes.get('_route')== 'futar_manager_sold' %}class="active"{% endif %}>
+								<a href="{{ path('futar_manager_sold') }}" >
+									Vendus
+								</a>
+							</li>
+							<li id="top" {% if app.request.attributes.get('_route')== 'futar_manager_top' %}class="active"{% endif %}>
+								<a href="{{ path('futar_manager_top') }}">
+									Top des ventes
+								</a>
+							</li>
+							<li {% if app.request.attributes.get('_route')== 'futar_manager_rebuy' %}class="active"{% endif %}>
+								<a href="{{ path('futar_manager_rebuy') }}">
+									A racheter
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									Chiffres
+								</a>
+							</li>
+							{% endblock %}
+						</ul>
+						<form class="navbar-form navbar-right" role="search">
+					        <div class="form-group">
+					        	<input type="text" class="form-control" placeholder="Search">
+					        </div>
+					        <button type="submit" class="btn btn-primary">Recherche joueur</button>
+					    </form>
+					</div>
+				</nav>
+			</div>
+		</div>
+		
+		<hr>
+
+		<div class="row">
+			<div class="col-md-4">
+					<div class="jumbotron">
+						<form role="form">
+							<div class="form-group">
+								<div class="dropdown">
+			    					<input type="text" class="dropdown-toggle form-control" id="cardSearch" placeholder="Tapez le nom" ng-keyup="playerSearch()" ng-model="name" aria-expanded="true"/>
+			    					<ul class="dropdown-menu" role="menu" style="min-width:auto;width:100%;" aria-labelledby="cardSearch"></ul>
+	              				</div>
+			    			</div>
+						</form>
+				</div>
+			</div>
+			<div class="col-md-8">
+					<div class="jumbotron">
+						{% block table %}{% endblock %}
+				</div>
+			</div>
+		</div>
+
+		<hr>
+
+		<footer>
+			<p>The sky's the limit © {{ 'now'|date('Y') }} and beyond.</p>
+		</footer>
+
+		{% block javascripts %}
+		    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+		    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		{% endblock %}
+	</body>
+
+</html>

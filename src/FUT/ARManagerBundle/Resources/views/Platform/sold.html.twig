@@ -1,0 +1,32 @@
+{# src/FUT/ARManagerBundle/Resources/views/Platform/index.html.twig #}
+
+{% extends 'FUTARManagerBundle::layout.html.twig' %}
+
+{% block currentPage %}Joueurs vendus{% endblock %}
+
+
+{% block liste %}
+	<tr>
+		<th>#</th>
+		<th>Club</th>
+		<th>Joueur</th>
+		<th>Prix Achat</th>
+		<th>Prix Vente</th>
+		<th>Bénéfices</th>
+	</tr>
+	{% for card in cards %}
+		<tr>	
+			<td>{{ loop.index }}</td>
+			<td><img width="32" height="32" src="{{ asset(card.player.club.logo) }}"></td>
+			<td><img width="32" height="32" src="{{ asset(card.player.photo) }}"> {{ card.player.firstName }}  {{ card.player.lastName }}</td>
+			<td>{{ card.buyPrice }}</td>
+			<td>{{ card.sellPrice }}</td>
+			<td>{{ card.benefices }}</td>
+		</tr>
+	{% else %}
+		<tr>
+			<td>pas de joueurs trouvé</td>
+		</tr>
+	{% endfor %}
+
+{% endblock %}

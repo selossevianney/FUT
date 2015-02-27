@@ -1,0 +1,23 @@
+futar_manager_home:
+    path:    /home/{orderBy}/{order}
+    defaults: { _controller: FUTARManagerBundle:Default:index, orderBy : buyDate, order : desc }
+    requirements:
+        order : desc|asc
+
+futar_manager_sold:
+    path:    /sold/{orderBy}/{order}
+    defaults: { _controller: FUTARManagerBundle:Default:sold, orderBy : buyDate, order : desc }
+    requirements:
+        order : desc|asc
+
+futar_manager_top:
+    path:    /top/{orderBy}/{order}
+    defaults: { _controller: FUTARManagerBundle:Default:top, orderBy : soldPriceAverage, order : desc }
+    requirements:
+        order : desc|asc
+
+futar_manager_rebuy:
+    path:    /rebuy/{orderBy}/{order}
+    defaults: { _controller: FUTARManagerBundle:Default:rebuy, orderBy : priceAverage, order : desc }
+    requirements:
+        order : desc|asc

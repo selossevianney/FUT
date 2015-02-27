@@ -1,0 +1,59 @@
+{# src/FUT/ARManagerBundle/Resources/views/Platform/index.html.twig #}
+
+{% extends 'FUTARManagerBundle::layout.html.twig' %}
+
+{% block currentPage %}Top des ventes{% endblock %}
+
+
+{% block liste %}
+	<tr>
+		<th>#</th>
+		<th>
+			Club 
+			<a href="{{ path('futar_manager_top', {'orderBy' : 'club', 'order' : 'asc' }) }}"><i class="glyphicon glyphicon-chevron-up"></i></a>
+			<a href="{{ path('futar_manager_top', {'orderBy' : 'club', 'order' : 'desc' }) }}"><i class="glyphicon glyphicon-chevron-down"></i></a>
+		</th>
+		<th>
+			Joueur
+		  <a href="{{ path('futar_manager_top', {'orderBy' : 'lastName', 'order' : 'asc' }) }}"><i class="glyphicon glyphicon-chevron-up"></i></a>
+		  <a href="{{ path('futar_manager_top', {'orderBy' : 'lastName', 'order' : 'desc' }) }}"><i class="glyphicon glyphicon-chevron-down"></i></a>
+		</th>
+		<th>
+			Prix d'achat moyen 
+			<a href="{{ path('futar_manager_top', {'orderBy' : 'priceAverage', 'order' : 'asc' }) }}"><i class="glyphicon glyphicon-chevron-up"></i></a>
+			<a href="{{ path('futar_manager_top', {'orderBy' : 'priceAverage', 'order' : 'desc' }) }}"><i class="glyphicon glyphicon-chevron-down"></i></a>
+		</th>
+		<th>
+			Prix de vente moyen 
+			<a href="{{ path('futar_manager_top', {'orderBy' : 'soldPriceAverage', 'order' : 'asc' }) }}"><i class="glyphicon glyphicon-chevron-up"></i></a>
+			<a href="{{ path('futar_manager_top', {'orderBy' : 'soldPriceAverage', 'order' : 'desc' }) }}"><i class="glyphicon glyphicon-chevron-down"></i></a>
+		</th>
+		<th>
+			Bénéfice moyen
+			<a href="{{ path('futar_manager_top', {'orderBy' : 'profitAverage', 'order' : 'asc' }) }}"><i class="glyphicon glyphicon-chevron-up"></i></a>
+			<a href="{{ path('futar_manager_top', {'orderBy' : 'profitAverage', 'order' : 'desc' }) }}"><i class="glyphicon glyphicon-chevron-down"></i></a>
+		</th>
+		<th>
+			Bénéfice Total
+			<a href="{{ path('futar_manager_top', {'orderBy' : 'profitTotal', 'order' : 'asc' }) }}"><i class="glyphicon glyphicon-chevron-up"></i></a>
+			<a href="{{ path('futar_manager_top', {'orderBy' : 'profitTotal', 'order' : 'desc' }) }}"><i class="glyphicon glyphicon-chevron-down"></i></a>
+		</th>
+	</tr>
+	
+	{% for player in players %}
+		<tr>	
+			<td>{{ loop.index }}</td>
+			<td><img width="32" height="32" src="{{ asset(player.club.logo) }}"></td>
+			<td><img width="32" height="32" src="{{ asset(player.photo) }}"> {{ player.firstName }}  {{ player.lastName }}</td>
+			<td>{{ player.priceAverage }}</td>
+			<td>{{ player.soldPriceAverage }}</td>
+			<td>{{ player.profitAverage }}</td>
+			<td>{{ player.profitTotal }}</td>
+		</tr>
+	{% else %}
+		<tr>
+			<td>pas de joueurs trouvé</td>
+		</tr>
+	{% endfor %}
+
+{% endblock %}

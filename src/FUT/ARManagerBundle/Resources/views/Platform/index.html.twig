@@ -1,0 +1,53 @@
+{# src/FUT/ARManagerBundle/Resources/views/Platform/index.html.twig #}
+
+{% extends 'FUTARManagerBundle::layout.html.twig' %}
+
+{% block currentPage %}Joueurs listés{% endblock %}
+
+{% block liste %}
+	<tr>
+		<th>#</th>
+		<th>
+			Club 
+			<a href="{{ path('futar_manager_home', {'orderBy' : 'club', 'order' : 'asc' }) }}"><i class="glyphicon glyphicon-chevron-up"></i></a>
+			<a href="{{ path('futar_manager_home', {'orderBy' : 'club', 'order' : 'desc' }) }}"><i class="glyphicon glyphicon-chevron-down"></i></a> 
+		</th>
+		<th>
+			Joueur
+		  <a href="{{ path('futar_manager_home', {'orderBy' : 'lastName', 'order' : 'asc' }) }}"><i class="glyphicon glyphicon-chevron-up"></i></a>
+		  <a href="{{ path('futar_manager_home', {'orderBy' : 'lastName', 'order' : 'desc' }) }}"><i class="glyphicon glyphicon-chevron-down"></i></a>
+		</th>
+		<th>
+			Prix d'achat
+			<a href="{{ path('futar_manager_home', {'orderBy' : 'buyPrice', 'order' : 'asc' }) }}"><i class="glyphicon glyphicon-chevron-up"></i></a>
+			<a href="{{ path('futar_manager_home', {'orderBy' : 'buyPrice', 'order' : 'desc' }) }}"><i class="glyphicon glyphicon-chevron-down"></i></a>
+		</th>
+		<th>
+			Prix de vente
+			<a href="{{ path('futar_manager_home', {'orderBy' : 'sellPrice', 'order' : 'asc' }) }}"><i class="glyphicon glyphicon-chevron-up"></i></a>
+			<a href="{{ path('futar_manager_home', {'orderBy' : 'sellPrice', 'order' : 'desc' }) }}"><i class="glyphicon glyphicon-chevron-down"></i></a>
+		</th>
+		<th>
+			Bénéfice
+			<a href="{{ path('futar_manager_home', {'orderBy' : 'benefices', 'order' : 'asc' }) }}"><i class="glyphicon glyphicon-chevron-up"></i></a>
+			<a href="{{ path('futar_manager_home', {'orderBy' : 'benefices', 'order' : 'desc' }) }}"><i class="glyphicon glyphicon-chevron-down"></i></a>
+		</th>
+	</tr>
+
+	{% for card in cards %}
+		<tr>	
+			<td>{{ loop.index }}</td>
+			<td><img width="32" height="32" src="{{ asset(card.player.club.logo) }}"></td>
+			<td><img width="32" height="32" src="{{ asset(card.player.photo) }}"> {{ card.player.firstName }}  {{ card.player.lastName }}</td>
+			<td>{{ card.buyPrice }}</td>
+			<td>{{ card.sellPrice }}</td>
+			<td>{{ card.benefices }}</td>
+			<td><button class="btn btn-success">Vendu</button></td>
+		</tr>
+	{% else %}
+		<tr>
+			<td>pas de joueurs trouvé</td>
+		</tr>
+	{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,3 @@
+futar_manager:
+    resource: "@FUTARManagerBundle/Resources/config/routing.yml"
+    prefix:   /
